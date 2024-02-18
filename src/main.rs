@@ -5,11 +5,11 @@ fn main() {
     println!("Hello, world!");
     //Collect values from the environment 
     let arguments : Vec<String> = env::args().collect() ; 
-    //Reference the file name 
-    let file_name = &arguments[1] ; 
+    let query = parse_cli_argument(&arguments);
+    reader::file_reader(&query);
+} 
 
-    //let the_file = String::from("hello.txt");
-    //let my_file = reader::file_reader(&the_file);
-    //print!("This is my file name {}" , my_file);
-    reader::file_reader(&file_name);
+fn parse_cli_argument(args : &[String]) -> &str{
+    let query = &args[1] ; 
+    query
 }

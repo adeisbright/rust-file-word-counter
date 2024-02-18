@@ -5,11 +5,16 @@ fn main() {
     println!("Hello, world!");
     //Collect values from the environment 
     let arguments : Vec<String> = env::args().collect() ; 
-    let query = parse_cli_argument(&arguments);
-    reader::file_reader(&query);
+    let config = Config::new(&arguments);
+    reader::file_reader(config.file_name);
 } 
 
-fn parse_cli_argument(args : &[String]) -> &str{
-    let query = &args[1] ; 
-    query
+struct Config {
+    file_name :String ,
+}
+impl  Config {
+    fn new(args : &[String]) -> Config{
+        let file_name = args[1].clone() ; 
+        Config {file_name}
+    }
 }

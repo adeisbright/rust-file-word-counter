@@ -2,7 +2,6 @@ extern crate  rust_file_word_counter ;
 use rust_file_word_counter::filereader::reader ; 
 use std::{env, process} ; 
 fn main() {
-    //Collect values from the environment 
     let arguments : Vec<String> = env::args().collect() ; 
     let config = Config::build(&arguments)
     .unwrap_or_else(|err|{
@@ -10,6 +9,8 @@ fn main() {
         process::exit(1)
     }) ;
     reader::file_reader(config.file_name);
+    let my_count = reader::word_counter();
+    println!("The word appears {} times" , my_count);
 } 
 
 struct Config {

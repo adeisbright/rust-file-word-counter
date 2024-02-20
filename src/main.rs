@@ -11,6 +11,7 @@ fn main() {
     reader::file_reader(config.file_name);
     let my_count = reader::word_counter();
     println!("The word appears {} times" , my_count);
+    reader::file_reader_copy(String::from("Cargo.toml"));
 } 
 
 struct Config {

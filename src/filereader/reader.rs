@@ -1,8 +1,7 @@
+use core::panic;
 use std::fs ; 
-//use std::io::{BufReader , BufRead};
-// use std::path::Path ; 
-//Problem 1.1 => I want to be able to return the content that was read 
-// Then I want to use another function to count how many times a word appears
+use std::fs::File ;
+use std::io::{BufReader , BufRead}; 
 
 pub fn file_reader(file_name : String){
     let contents = fs::read_to_string(file_name)
@@ -22,4 +21,21 @@ pub fn word_counter() -> i32{
         }
     }
     word_counter
+}
+
+pub fn file_reader_copy(file_name : String) {
+    let file = match File::open(file_name){
+       Ok(file) => file , 
+       Err(_) => panic!("Wahala")
+    };
+
+    let reader = BufReader::new(file) ; 
+    for line_result in reader.lines(){
+        let line = match line_result { 
+            Ok(line) => line , 
+            Err(_) => panic!("Not able to read line"),
+        };
+        println!("Based on {}" , line)
+    }
+    
 }

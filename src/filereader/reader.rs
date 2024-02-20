@@ -1,18 +1,8 @@
-use core::panic;
-use std::fs ; 
+
 use std::fs::File ;
-use std::io::{BufReader , BufRead}; 
+use std::io::{BufReader , BufRead , Result}; 
 
-pub fn file_reader(file_name : String){
-    let contents = fs::read_to_string(file_name)
-    .expect("Should have been able to read file");
-    println!("\n{contents}");
-    
-}
-
-pub fn word_counter() -> i32{
-    let sentence = String::from("Every Good Boy Deserves Favour");
-    let word = String::from("Boy") ; 
+pub fn word_counter(sentence : String , word : &String) -> i32{
     let mut word_counter = 0 ; 
     let split_words : Vec<&str> = sentence.split_whitespace().collect() ;
     for text in split_words {
@@ -23,19 +13,15 @@ pub fn word_counter() -> i32{
     word_counter
 }
 
-pub fn file_reader_copy(file_name : String) {
-    let file = match File::open(file_name){
-       Ok(file) => file , 
-       Err(_) => panic!("Wahala")
-    };
-
+pub fn file_reader(file_name : String) -> Result<String> {
+    let file =  File::open(&file_name)? ; 
     let reader = BufReader::new(file) ; 
+    let mut contents = String::new() ; 
+
     for line_result in reader.lines(){
-        let line = match line_result { 
-            Ok(line) => line , 
-            Err(_) => panic!("Not able to read line"),
-        };
-        println!("Based on {}" , line)
+        let line = line_result?;
+        contents.push_str(&line);
+        contents.push('\n'); 
     }
-    
+    Ok(contents)
 }

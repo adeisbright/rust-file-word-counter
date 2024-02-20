@@ -8,10 +8,15 @@ fn main() {
         println!("Problems with reading arguments {err}");
         process::exit(1)
     }) ;
-    reader::file_reader(config.file_name);
-    let my_count = reader::word_counter();
-    println!("The word appears {} times" , my_count);
-    reader::file_reader_copy(String::from("Cargo.toml"));
+   
+    match reader::file_reader(String::from(config.file_name)){
+        Ok(contents) => {
+            let word =  String::from("edition");
+            let my_count = reader::word_counter(contents , &word );
+            println!("The word  {} appears {} times in the file" , &word , my_count );
+        }
+        Err(err) => eprintln!("{}" , err),
+    };
 } 
 
 struct Config {

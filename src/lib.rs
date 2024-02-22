@@ -1,1 +1,2 @@
-pub mod filereader;
+pub mod filereader; 
+pub mod config;

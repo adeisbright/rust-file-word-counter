@@ -2,6 +2,12 @@
 use std::fs::File ;
 use std::io::{BufReader , BufRead , Result}; 
 
+/// Count the frequency of a word within a sentence 
+///
+/// # Example 
+/// word_counter("Hello, Word! How are you doing?" , "you") 
+/// Returns 1 because you occurs only once in the sentence 
+
 pub fn word_counter(sentence : String , word : &String) -> i32{
     let mut word_counter = 0 ; 
     let split_words : Vec<&str> = sentence.split_whitespace().collect() ;

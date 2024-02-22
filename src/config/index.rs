@@ -1,5 +1,6 @@
 pub struct Config {
     pub file_name :String ,
+    pub word : String ,
 }
 
 impl  Config {
@@ -8,6 +9,7 @@ impl  Config {
             return Err("Not Enough Argument Error : Please provide file name");
         }
         let file_name = args[1].clone() ; 
-        Ok(Config {file_name})
+        let word = args[2].clone() ; 
+        Ok(Config {file_name , word})
     }
 }

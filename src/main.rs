@@ -12,9 +12,8 @@ fn main() {
    
     match reader::file_reader(String::from(config.file_name)){
         Ok(contents) => {
-            let word =  String::from("edition");
-            let my_count = reader::word_counter(contents , &word );
-            println!("The word  {} appears {} times in the file" , &word , my_count );
+            let my_count = reader::word_counter(contents  , &config.word );
+            println!("The word  {} appears {} times in the file" , &config.word , my_count );
         }
         Err(err) => eprintln!("{}" , err),
     };

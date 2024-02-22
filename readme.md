@@ -29,8 +29,13 @@ Before running, the code , ensure you have cargo on your system.
 Run 
 
 ```cargo check```
+
 To check that everything is fine 
 
-Run 
-```cargon run -- filename --word```
+Run the program using: 
+
+```cargon run -- filename word```
+
+Where {{filename}} is the name of the file you are interested in reading  and {{word}} is the 
+word you want to count how many times it occurs within the file
 

@@ -1,2 +1,2 @@
 pub mod filereader; 
-pub mod config;
+pub mod arg_reader;
